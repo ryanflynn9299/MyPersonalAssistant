@@ -4,17 +4,23 @@ January 2018
 Mr. Maki
 Advanced Computer Science
 Personal Assistant: Madaket
-v1.0
+v1.1
 '''
 
-import wolframalpha
+import wolframalpha, wikipedia
 
-input = raw_input('How can I help you?')
-app_id = 'L96JHW-WUHKT49E78'
 
-client = wolframalpha.Client(app_id)
+while True:
+    input = raw_input('How can I help you?/n')
+    try:
+        app_id = 'L96JHW-WUHKT49E78'
 
-result = client.query(input)
-answer = next(result.results).text
+        client = wolframalpha.Client(app_id)
 
-print answer
+        result = client.query(input)
+        answer = next(result.results).text
+
+        print answer
+    except Exception as e:
+        print e
+        print wikipedia.summary(input, sentences = 2)
