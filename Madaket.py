@@ -15,6 +15,6 @@ app_id = 'L96JHW-WUHKT49E78'
 client = wolframalpha.Client(app_id)
 
 result = client.query(input)
-answer = next(res.results).text
+answer = next(result.results).text
 
 print answer
