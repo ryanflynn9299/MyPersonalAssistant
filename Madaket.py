@@ -10,7 +10,7 @@ v1.0
 import wolframalpha
 
 input = raw_input('How can I help you?')
-app_id = '7pL-5km-54P-p79'
+app_id = 'L96JHW-WUHKT49E78'
 
 client = wolframalpha.Client(app_id)
 
