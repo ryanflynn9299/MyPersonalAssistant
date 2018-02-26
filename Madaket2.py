@@ -4,7 +4,8 @@ January 2018
 Mr. Maki
 Advanced Computer Science
 Personal Assistant: Madaket
-v1.1
+Python 2.7
+v2.0
 '''
 
 import wolframalpha, wikipedia
