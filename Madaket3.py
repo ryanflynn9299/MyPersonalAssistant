@@ -2,14 +2,11 @@
 # -*- coding: utf-8 -*-
 
 """
-ZetCode PyQt5 tutorial 
-
-In this example, we receive data from
-a QInputDialog dialog. 
-
-Aauthor: Jan Bodnar
-Website: zetcode.com 
-Last edited: August 2017
+Ryan Flynn
+Advanced Computer Science
+Madaket the Personal Assistant
+March 2018
+v3.1
 """
 
 from PyQt5.QtWidgets import (QWidget, QPushButton, QTextEdit, 
@@ -17,31 +14,33 @@ from PyQt5.QtWidgets import (QWidget, QPushButton, QTextEdit,
 from PyQt5.QtCore import Qt
 import sys, Knowledge
 
-class Example(QWidget):
+class Gui(QWidget):
     
     def __init__(self):
         super().__init__()
-        
+        self._question = "M: How can I help you?"
+        self.out_text = self._question + '\n'
         self.initUI()
         
         
     def initUI(self):      
-        #Output label and textbox
+        # Output label and textbox
         self.out_label = QLabel('Madaket')
         self.out = QTextEdit(self)
         self.out.setReadOnly(True)
+        self.out.setText(self.out_text)
         
-        #Input label and textbox
+        # Input label and textbox
         self.in_label = QLabel('You')
         self.inp = QTextEdit(self)
 
-        #Submit Button
+        # Submit Button
         self.submit = QPushButton('Submit',self)
         QPushButton.setDefault(self.submit, True)
         self.submit.clicked.connect(self.display)
-        print(self.submit.isDefault())
+        # print(self.submit.isDefault())
 
-        #Grid
+        # Grid
         self.grid = QGridLayout()
         self.grid.setSpacing(10)
         self.grid.setColumnStretch(0, 1)
@@ -49,7 +48,7 @@ class Example(QWidget):
         self.grid.setRowStretch(1, 5)
         self.grid.setRowStretch(2,2)
 
-        #Grid Placement
+        # Grid Placement
         self.grid.addWidget(self.out_label, 1, 0)
         self.grid.addWidget(self.out, 1, 1)
         self.grid.addWidget(self.in_label, 2, 0)
@@ -58,31 +57,42 @@ class Example(QWidget):
 
         self.setLayout(self.grid)
         
-        #Window
+        # Window
         self.setGeometry(500, 500, 500, 485)
         self.setWindowTitle('Madaket')
         self.show()
         
-        
+    def _format(self, answer, query):
+        # Formats output and updates the text log which is returned
+        # general format: Madaket offers assistance, User asks question, Madaket offers assistance, repeat
+        new = 'Y: ' + query + '\n' + 'M: ' + answer + '\n'
+        self.out_text += new + self._question + '\n'
+        return self.out_text
+    
     def display(self):
+        # get current display text
         txt = self.inp.toPlainText()
+
+        # Calculate and <<format>> output
         output = self.output(txt)
-        print(output)
-        self.out.setText(output)
+        # print(output)
+        self.out.setText(self._format(output, txt))
+        self.inp.setText('')
+        
 
     def keyPressEvent(self, event):
+        # Default button is submit. Engage default if return key is pressed
         if event.key() == Qt.Key_Return:
-            print("detected")
+            # print("detected")
             self.submit.click()
 
     def output(self, query):
-        print(Knowledge.ask(query))
+        # Knowledge engine call to get output text
         return Knowledge.ask(query)
-        
-        
+    
         
 if __name__ == '__main__':
     
     app = QApplication(sys.argv)
-    ex = Example()
+    ex = Gui()
     sys.exit(app.exec_())
