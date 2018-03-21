@@ -78,6 +78,11 @@ class Gui(QWidget):
         # print(output)
         self.out.setText(self._format(output, txt))
         self.inp.setText('')
+
+        # set scrollbar
+        maxi = self.out.verticalScrollBar().maximum()
+        self.out.verticalScrollBar().setValue(maxi)
+        
         
 
     def keyPressEvent(self, event):
