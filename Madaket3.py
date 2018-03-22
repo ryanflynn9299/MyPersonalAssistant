@@ -23,4 +23,4 @@ while True:
         print(answer)
     except Exception as e:
         print(e)
-        print(wikipedia.summary(input, sentences = 2))
+        print(wikipedia.summary(inp, sentences = 2))
