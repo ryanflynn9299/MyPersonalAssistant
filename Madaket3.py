@@ -6,7 +6,7 @@ Ryan Flynn
 Advanced Computer Science
 Madaket the Personal Assistant
 March 2018
-v3.1
+v3.2
 """
 
 from PyQt5.QtWidgets import (QWidget, QPushButton, QTextEdit, 
