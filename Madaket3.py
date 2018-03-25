@@ -65,7 +65,7 @@ class Gui(QWidget):
     def _format(self, answer, query):
         # Formats output and updates the text log which is returned
         # general format: Madaket offers assistance, User asks question, Madaket offers assistance, repeat
-        new = 'Y: ' + query + '\n' + 'M: ' + answer + '\n'
+        new = 'Y: ' + query + '\n' + 'M: ' + answer + '\n\n'
         self.out_text += new + self._question + '\n'
         return self.out_text
     
@@ -91,12 +91,6 @@ class Gui(QWidget):
             # print("detected")
             self.submit.click()
 
-<<<<<<< HEAD
-        print(answer)
-    except Exception as e:
-        print(e)
-        print(wikipedia.summary(inp, sentences = 2))
-=======
     def output(self, query):
         # Knowledge engine call to get output text
         return Knowledge.ask(query)
@@ -107,4 +101,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = Gui()
     sys.exit(app.exec_())
->>>>>>> af99dd6076efdbf9aaff31dddc6e5719406b4955
+
