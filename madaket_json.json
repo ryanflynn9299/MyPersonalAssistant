@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "madaket-199202",
+  "private_key_id": "896703ba8bfdc13fe377a4bd404e182505dbb899",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCvYESgnMCQ9iEv\neNRDJXRics8mcKErjnT4riaNqmH7T3Jh821OB/m/CIgT/rkjHM5MabZf8kN0Q2HM\ndb2ap0tg/DXkFOQtM5Sfd6jn42ux1dAjuyUyaXfIRsmKiYOg8aASIoNzX3ti5U6b\n/L7ppc/qT5oy96N0Ocb7pCsFxZJ/HCJqt7TaMS3vNSp4iWubukNBx1XROMBWRZEe\n1zmFiHij+lU64wb7aO3LcZmCWHP6ZFyWDyYyP09T9RSWTis5XJRE9YP0BIlwsI+0\n8OkoIXffa/0N7Rg0xIriw9DQs+5SrG8/gP16eSMiXx0pAEH/G6dNldwLGio7fLAv\nMiLJmUS1AgMBAAECggEACGIniwP4l+q5dbhRcUTvliswfYEXJeq2lb1WyMvdyN0o\nix0ksFJk8mhZKkIxcx0T5tw2JHUDcMyDIXp5Y1S0SkEUNGsj6IiVhgqlejGeus63\n7JVWzFz1UGTDNUpTOVTY7DUBJ/k8VThqnxNLGbExn1z0cpOa7oSP31n0LTT0xqWr\nBoz5PFOeK2IhuLtmo+M3gfV41an5dcq0RNCZXox6JhDA7BwmdLk4b4v9OPk8b9Y6\nL6hlkwSeCTZrBjXGbVEeXXt/ysG8B8RjfbrZ8lw6SrrXcCbRMmGBCCXhmhHcWNpU\nlteF+yxAvMWbVTq6DSUo1fvbGBO46DUYVbbMZnxyiwKBgQDz+E7qVWS4WG9dFCcQ\nscd1OaVsVYH+T8vsS098GUjnaE/JM7bjU2MiwVPAy68++MSKhy0o5WdiAiK9qNw4\npqdjpkCKu9i9G0nIUgJ4N+5H1mPFV9e7GOXCLPY6Q5GUZrdwZ3oWogTCGP1Puoc7\ngQs1OOnawt+MJ1EZDbcf9Q2NTwKBgQC4BhUT5tP2vVvEr92JniRfpb/DAvRY7nN7\np2a2Qrxl+ZuDLE5YZnIGhRqjO+ajDp4B3vM2Xx5Ofitjxgiv7UWNWEQTQIR5/eef\nYI+Ype8Qy9t9+SaXO6eXsiWIt9xUAdQcH+naU7rkmJZExrvfZvZkxtYOAgl7EdBh\nEIcADlE0uwKBgA6al4a5c90BFjF5Kll6etkOiVNxzuU9O5S6cViZXt7TRKtjmBgF\nftKuxeetiaD4XTN5of9ntAeO3yuBNyWA/FYfto9XbULspj8CgblWh8HvGGvQtU4y\n0FYOQPL95nH+sA5fc1R1gFlqC4fBP6UVNWmLLZx1u9H07IrWYlbcYWJLAoGAa81k\nW5xFX63eLIK5zPyPYli+1YbNjatii3WtfefqZfKrX1R9MNwSwC8JQ8a7fZn6hi4N\nXDSslF7lHDXOsQDWVc73Ui/ha3WKUptGg63xNm21zz49lSqlKwB5bHYI5E2N7Evl\nuriCK5gXr4KcXGr8vFye2OXol+f/ol0EOMwqVjECgYEA5B8P1PqFapWa6M5l/wo1\ndOXXeEbGsCIcvd13sAA2T5RwDKOr9avQym/9WN+LyfHWndhhRpDU2Hn1dBXPB+xX\nmgups9H6YpgxVm4ZO4Cm38WABo/qcrG5GQXZtFy7jEplCH7WPrpZoehVYEK7SPPr\nxjHWHn1EVdf0ERcFfnhy2m4=\n-----END PRIVATE KEY-----\n",
+  "client_email": "madaket@madaket-199202.iam.gserviceaccount.com",
+  "client_id": "102185960571839903457",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/madaket%40madaket-199202.iam.gserviceaccount.com"
+}
