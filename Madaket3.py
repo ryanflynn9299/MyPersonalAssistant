@@ -62,20 +62,24 @@ class Gui(QWidget):
         self.setWindowTitle('Madaket')
         self.show()
         
-    def _format(self, answer, query):
+    def _format(self, response, query):
         # Formats output and updates the text log which is returned
         # general format: Madaket offers assistance, User asks question, Madaket offers assistance, repeat
-        new = 'Y: ' + query + '\n' + 'M: ' + answer + '\n\n'
+        new = 'Y: ' + query + '\n' + 'M: ' + response + '\n\n'
         self.out_text += new + self._question + '\n'
         return self.out_text
     
     def display(self):
+        
         # get current display text
         txt = self.inp.toPlainText()
 
         # Calculate and <<format>> output
-        output = self.output(txt)
-        # print(output)
+        try:
+            output = self.output(txt)
+        except Exception as e:
+            print(e)
+            print(output)
         self.out.setText(self._format(output, txt))
         self.inp.setText('')
 

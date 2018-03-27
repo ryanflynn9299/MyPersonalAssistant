@@ -7,17 +7,29 @@ Personal Assistant: Madaket
 v3.2
 '''
 
-from nltk import word_tokenize
-from many_stop_words import get_stop_words as stop_list
-import wolframalpha, wikipedia,tweepy
+from oauth2client.service_account import ServiceAccountCredentials
+import wolframalpha, wikipedia, tweepy, gspread
 import re
 
+s_client = None
+
 def ask(q):
-    # _tokens = word_tokenize(q)
-    # filtered_q = list(filter(lambda word: word not in stop_list('en'), _tokens))
-    # print(filtered_q)
+    global s_client
     
-    if _tokens[0].lower() == 'help':
+    _config_spread()
+
+    table = s_client.open('madaket_data').sheet1
+
+    search = table.findall(q.lower())
+
+    if search:
+        res = table.cell(search[0].row, 2).value
+        try:
+            return eval(res)
+        except Exception:
+            return res
+    
+    if q.lower() == 'help':
         return _help()
     
     if "twitter" in q.lower() or "tweet" in q.lower():
@@ -60,6 +72,13 @@ def _tweet(text):
         return ''
     except tweepy.error.TweepError:
         return "You already posted that"
+
+def _config_spread():
+    global s_client
+    scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/ryanflynn/Downloads/madaket_json.json',
+                                                             scope)
+    s_client = gspread.authorize(creds)
 
 def _get_api(cfg):
     auth = tweepy.OAuthHandler(cfg['consumer_key'], cfg['consumer_secret'])
