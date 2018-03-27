@@ -65,26 +65,27 @@ class Gui(QWidget):
     def _format(self, response, query):
         # Formats output and updates the text log which is returned
         # general format: Madaket offers assistance, User asks question, Madaket offers assistance, repeat
-        if len(response) == 1:
-            new = 'Y: ' + query + '\n' + 'M: ' + answer + '\n\n'
-            self.out_text += new + self._question + '\n'
-            return self.out_text
+        new = 'Y: ' + query + '\n' + 'M: ' + response + '\n\n'
+        self.out_text += new + self._question + '\n'
+        return self.out_text
     
     def display(self):
-        while True:
-            # get current display text
-            txt = self.inp.toPlainText()
+        
+        # get current display text
+        txt = self.inp.toPlainText()
 
-            # Calculate and <<format>> output
-            output, loop = *self.output(txt)
-            # print(output)
-            self.out.setText(self._format(output, txt))
-            self.inp.setText('')
+        # Calculate and <<format>> output
+        try:
+            output = self.output(txt)
+        except Exception as e:
+            print(e)
+            print(output)
+        self.out.setText(self._format(output, txt))
+        self.inp.setText('')
 
-            # set scrollbar
-            maxi = self.out.verticalScrollBar().maximum()
-            self.out.verticalScrollBar().setValue(maxi)
-            continue if loop else break
+        # set scrollbar
+        maxi = self.out.verticalScrollBar().maximum()
+        self.out.verticalScrollBar().setValue(maxi)
         
         
 
