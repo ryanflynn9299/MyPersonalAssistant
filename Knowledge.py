@@ -10,6 +10,7 @@ v3.3
 from oauth2client.service_account import ServiceAccountCredentials
 import wolframalpha, wikipedia, tweepy, gspread
 import re
+from random import choice
 
 s_client = None
 
@@ -28,6 +29,12 @@ def ask(q):
         res = table.cell(search[0].row, 2).value
         try:
             return eval(res)
+        if type(res) == list:
+                return choice(res)
+            elif type(res) == str:
+                return res
+            else:
+                return str(res)
         except Exception:
             return res
 
