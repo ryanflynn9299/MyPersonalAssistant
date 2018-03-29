@@ -29,6 +29,7 @@ def ask(q):
         res = table.cell(search[0].row, 2).value
         try:
             return eval(res)
+        # Error handling with eval() and gspread output type
         if type(res) == list:
                 return choice(res)
             elif type(res) == str:
