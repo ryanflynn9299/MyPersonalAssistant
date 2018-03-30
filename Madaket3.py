@@ -6,7 +6,7 @@ Ryan Flynn
 Advanced Computer Science
 Madaket the Personal Assistant
 March 2018
-v3.2
+v3.4
 """
 
 from PyQt5.QtWidgets import (QWidget, QPushButton, QTextEdit, 
@@ -58,7 +58,7 @@ class Gui(QWidget):
         self.setLayout(self.grid)
         
         # Window
-        self.setGeometry(500, 500, 500, 485)
+        self.setGeometry(0, 0, 500, 485)
         self.setWindowTitle('Madaket')
         self.show()
         
