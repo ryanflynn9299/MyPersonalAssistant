@@ -4,7 +4,7 @@ January 2018
 Mr. Maki
 Advanced Computer Science
 Personal Assistant: Madaket
-v3.3
+v3.4
 '''
 
 from oauth2client.service_account import ServiceAccountCredentials
@@ -16,6 +16,9 @@ s_client = None
 
 def ask(q):
     global s_client
+
+    if not q:
+        return "Sorry, I didn't get that."
     # Google sheets support
     # Configure table
     _config_spread()
@@ -28,16 +31,19 @@ def ask(q):
     if search:
         res = table.cell(search[0].row, 2).value
         try:
-            return eval(res)
-        # Error handling with eval() and gspread output type
-        if type(res) == list:
-                return choice(res)
-            elif type(res) == str:
-                return res
-            else:
-                return str(res)
-        except Exception:
-            return res
+            # Error handling with eval() and gspread output type
+            ret = eval(str(res))
+            # print(type(ret))
+            if type(ret) == list:
+                # Detect lists from gspread
+                # print('here')
+                return choice(ret)
+            elif hasattr(ret,'__call__'):
+                # Detect funtions
+                return ret
+        except Exception as e:
+            # print('this')
+            return str(res)
 
     # Twitter support: posts on twitter according to regex search of query. Does not allow duplicates
     if "twitter" in q.lower() or "tweet" in q.lower():
