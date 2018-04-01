@@ -110,7 +110,7 @@ def _get_api(cfg):
 
 def _help():
     # A help function. Posts some questions the user can ask
-    return      '''Some questions I can answer:
+    return  '''Some questions I can answer:
 
                 What's the weather like?
                 What's the square root of pi?
