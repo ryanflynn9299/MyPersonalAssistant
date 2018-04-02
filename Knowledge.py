@@ -98,6 +98,18 @@ def ask(q):
         except Exception:
             # If Wikipedia does not have an answer, default to I don't understand string
             return "I don't know that." + "/n" + "You can ask me 'help' to see a list of things I can do."
+
+def learn(question, answer):
+    _config_spread()
+
+    table1 = s_client.open('madaket_data').sheet1
+    try:
+        table1.append_row([question, answer])
+        return 'Learned!'
+    except Exception:
+        return 'Oops!'
+    
+
 def _tweet(text):
     # Unique to my user:
     cfg = { 

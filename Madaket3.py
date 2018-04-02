@@ -20,6 +20,7 @@ class Gui(QWidget):
         super().__init__()
         self._question = "M: How can I help you?"
         self.out_text = self._question + '\n'
+        self.last_question = ''
         self.initUI()
         
         
@@ -76,12 +77,10 @@ class Gui(QWidget):
 
         # Calculate and <<format>> output
         try:
-            output = self.output(txt)
-        except Exception as e:
-            print(e)
-            print(output)
+            output, update = *self.output(txt)
         self.out.setText(self._format(output, txt))
         self.inp.setText('')
+        self.last_question = update if update else self.last_question
 
         # set scrollbar
         maxi = self.out.verticalScrollBar().maximum()
@@ -97,7 +96,21 @@ class Gui(QWidget):
 
     def output(self, query):
         # Knowledge engine call to get output text
-        return Knowledge.ask(query)
+        try:
+            out = eval(Knowledge.ask(query))
+            return out, ''
+        except Exception:
+            out = Knowledge.ask(query)
+            return out, query
+
+    def _learn(self, ans):
+        if self.last_question:
+            q = self.last_question
+            output = Knowledge.learn(q, ans)
+            return output
+        else:
+            return 'You need to ask a question first!'
+        
     
         
 if __name__ == '__main__':
