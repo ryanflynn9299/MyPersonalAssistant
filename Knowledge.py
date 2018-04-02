@@ -23,13 +23,13 @@ def ask(q):
     # Configure table
     _config_spread()
 
-    table = s_client.open('madaket_data').sheet1
+    table1 = s_client.open('madaket_data').sheet1
     # Find any rows with tailored q in cell 1, output cell 2
     pattern = re.compile("['?!,.\"]")
-    search = table.findall(pattern.sub('', q.lower()))
+    search = table1.findall(pattern.sub('', q.lower()))
 
     if search:
-        res = table.cell(search[0].row, 2).value
+        res = table1.cell(search[0].row, 2).value
         try:
             # Error handling with eval() and gspread output type
             ret = eval(str(res))
@@ -45,7 +45,27 @@ def ask(q):
             # print('this')
             return str(res)
 
+    # For single parameter function calls from query using gspread: sheet2
+    # Twitter support included
+    table2 = s_client.open('madaket_data').worksheet('Sheet2')
+    
+    for txt in table2.col_values(1):
+        if q.lower().startswith(txt):
+            try:
+                pattern = re.compile("['?!,.\"]")
+                query = pattern.sub('', q.lower())
+                
+                pat = re.compile('(?<={}).*$'.format(txt), re.I)
+                var = pat.search(query).group()
+                return eval(table2.cell(table2.find(txt).row, 2).value)
+            except Exception as e:
+                print(e)
+                return 'Oops'
+    
+
     # Twitter support: posts on twitter according to regex search of query. Does not allow duplicates
+    '''
+    Deprecated:
     if "twitter" in q.lower() or "tweet" in q.lower():
         for phrase in ['post on twitter that','tweet that ', 'post on twitter that ',
                        'post to twitter that','tweet ', 'post to twitter ','post on twitter ']:
@@ -53,7 +73,7 @@ def ask(q):
                 pat = re.compile('(?<={}).*$'.format(phrase), re.I)
                 tweet = pat.search(q).group()
                 ret = _tweet(tweet)
-                return "Posted!" if not ret else ret
+                return "Posted!" if not ret else ret'''
 
     # Wolfram Alpha API: answers query using the Computational Knowledge engine utilized in this API
     try:
@@ -90,7 +110,7 @@ def _tweet(text):
     api = _get_api(cfg) # Configure Twitter API with tweepy module
     try:
         status = api.update_status(text) # post tweet
-        return ''
+        return 'Posted!'
     except tweepy.error.TweepError:
         return "You already posted that" # Tweepy raises an error if a status already exists
 
