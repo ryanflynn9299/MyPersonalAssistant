@@ -6,7 +6,7 @@ Ryan Flynn
 Advanced Computer Science
 Madaket the Personal Assistant
 March 2018
-v3.4
+v3.6
 """
 
 from PyQt5.QtWidgets import (QWidget, QPushButton, QTextEdit, 
@@ -18,8 +18,12 @@ class Gui(QWidget):
     
     def __init__(self):
         super().__init__()
+        # Some variables
         self._question = "M: How can I help you?"
         self.out_text = self._question + '\n'
+        self.last_question = ''
+        
+        # Initialize GUI
         self.initUI()
         
         
@@ -76,12 +80,13 @@ class Gui(QWidget):
 
         # Calculate and <<format>> output
         try:
-            output = self.output(txt)
+            output, update = self.output(txt)
         except Exception as e:
             print(e)
-            print(output)
+            output, update = '',''
         self.out.setText(self._format(output, txt))
         self.inp.setText('')
+        self.last_question = update if update else self.last_question
 
         # set scrollbar
         maxi = self.out.verticalScrollBar().maximum()
@@ -97,7 +102,27 @@ class Gui(QWidget):
 
     def output(self, query):
         # Knowledge engine call to get output text
-        return Knowledge.ask(query)
+        # try:
+        item = Knowledge.ask(query)
+        print(item)
+        if len(item) != 1 and type(item) == tuple:
+            var = item[1]
+            out = eval(item[0])
+            return out, ''
+        else:
+            out = Knowledge.ask(query)
+            return out, query
+
+    def _learn(self, ans):
+        # Protected UI side of learning function
+        if self.last_question:
+            q = self.last_question
+            output = Knowledge.learn(q, ans)
+            return output
+        else:
+            print('no question')
+            return 'You need to ask a question first!'
+        
     
         
 if __name__ == '__main__':
